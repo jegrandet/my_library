@@ -1,0 +1,72 @@
+@startuml
+
+class Livre {
+    id : INTEGER
+    ..
+    titre : STRING
+    code_ean : STRING
+    date_publication : DATE
+    prix : FLOAT
+    possede : BOOLEAN
+    resume : STRING
+    image : FILE
+    source : STRING
+}
+
+class Serie {
+    id : INTEGER
+    ..
+    titre : STRING
+    titre_vo : STRING
+    titre_traduit : STRING
+    nombre_tome_vo : INTEGER
+    nombre_tome_vf : INTEGER
+    termine_vo : BOOLEAN
+    termine_vf : BOOLEAN
+    complete : BOOLEAN
+    resume : STRING
+    image : FILE
+    source : STRING
+}
+
+class Editeur_VO {
+    id : INTEGER
+    ..
+    libelle : STRING
+}
+
+class Editeur_VF {
+    id : INTEGER
+    ..
+    libelle : STRING
+}
+
+class Collection {
+    id : INTEGER
+    ..
+    libelle : STRING
+}
+
+class Type {
+    id : INTEGER
+    ..
+    libelle : STRING
+}
+
+class Type_Ouvrage {
+    id : INTEGER
+    ..
+    libelle : STRING
+}
+
+
+Livre --> Serie
+Serie --> Editeur_VO
+Serie --> Editeur_VF
+Serie --> Collection
+Collection --> Editeur_VF
+Serie --> Type
+Serie --> Type_Ouvrage
+Serie --> Serie
+
+@enduml

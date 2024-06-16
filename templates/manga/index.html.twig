@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des mangas{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    
+{% endblock %}
+{% block importmap %}
+    {# parent() #}
+    {{ importmap('manga_controller') }}
+{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col text-center">
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">Ajouter une série</button>
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalAdd">Ajouter un manga</button>
+            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalAdd">Scanner</button>
+        </div>
+    </div>
+    
+    <table id="table_series" class="table table-striped" data-src="{{ path("manga_data") }}">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Titre VO</th>
+                <th>Titre traduit</th>
+                <th>Statut VO</th>
+                <th>Statut VF</th>
+                <th>Source</th>
+                <td>Action</td>
+            </tr>
+        </thead>
+    </table>
+
+
+
+
+
+    <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{ form_start(formNew, {'action':path('manga_serie_ajouter')}) }}
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalAddLabel">Ajouter une série</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_row(formNew.source) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" id="modalAddSubmit" class="btn btn-primary">Valider</button>
+                    </div>
+                {{ form_end(formNew) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
